@@ -34,7 +34,7 @@ public class Mazo {
         return mazo;
     }
     
-    public void shuffe() {
+    public void revolver() {
         Collections.shuffle(mazo);
     }
     
@@ -53,12 +53,10 @@ public class Mazo {
         }
     }
     
+    public void repartirFicha(Jugador jugador) {
+        this.revolver();
+        jugador.agregarFicha(mazo.remove(0));
+    }
     
-    
-    
-    
-    
-    
-        
-    
+   
 }
