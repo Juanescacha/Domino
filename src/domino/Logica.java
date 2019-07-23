@@ -6,6 +6,7 @@
 package domino;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,7 +17,6 @@ public class Logica {
     private ArrayList<Jugador> listaJugadores;
     boolean turnoJugador1 = true;
     boolean gameOver = false;
-    int contadorProvisional = 2;
     
     public Logica() {
         listaJugadores = new ArrayList<Jugador>();
@@ -59,19 +59,39 @@ public class Logica {
         
         //agrega la primera ficha para empezar el juego
         nuevoTablero.agregarPrimeraFicha(nuevoMazo.getFicha());
+        System.out.println("Primera Ficha: " + nuevoTablero.getLadoI() + " | " + nuevoTablero.getLadoS());
              
-        while (contadorProvisional != 0) {            
+        while (!gameOver) {            
             if(turnoJugador1) {
                 
                 if(humano.tieneJuego(nuevoTablero.getLadoI()) || humano.tieneJuego(nuevoTablero.getLadoS())) {
                     System.out.println(" puedes jugar , elije una ficha ");
                     //mostramos cartas
+                    System.out.println("humano 1");
                     humano.aString();
+                    String x = JOptionPane.showInputDialog("elije la posicion de una Ficha");
+                    //lado 1
+                    if(humano.manoJugador.get(Integer.parseInt(x)).getLado1() == nuevoTablero.getLadoI()) {
+                        nuevoTablero.agregarDominoI(humano.removerFicha(Integer.parseInt(x)), true);
+                    }
+                    //lado 2
+                    else if(humano.manoJugador.get(Integer.parseInt(x)).getLado1() == nuevoTablero.getLadoS()) {
+                        nuevoTablero.agregarDominoS(humano.removerFicha(Integer.parseInt(x)), false);
+                    }
+                    
+                    else if(humano.manoJugador.get(Integer.parseInt(x)).getLado2() == nuevoTablero.getLadoI()) {
+                        nuevoTablero.agregarDominoI(humano.removerFicha(Integer.parseInt(x)), true);
+                    }
+                    //lado 2
+                    else if(humano.manoJugador.get(Integer.parseInt(x)).getLado2()== nuevoTablero.getLadoS()) {
+                        nuevoTablero.agregarDominoS(humano.removerFicha(Integer.parseInt(x)), false);
+                    }
+                    
+                    
                 }
                 //ahora el jugador elije una carta y la pone
                 
                 //fin turno1
-                contadorProvisional--;
                 turnos();
             }
             else if(!turnoJugador1) {
@@ -79,11 +99,13 @@ public class Logica {
                 if(humano2.tieneJuego(nuevoTablero.getLadoI()) || humano2.tieneJuego(nuevoTablero.getLadoS())) {
                     System.out.println(" puedes jugar , elije una ficha ");
                     //le mostramos las cartas
+                    System.out.println("humano 2");
                     humano2.aString();
+                    String x = JOptionPane.showInputDialog("elije la posicion de una Ficha");
+                    nuevoTablero.agregarDominoI(humano2.removerFicha(Integer.parseInt(x)), true);
                 }
                 
                 // fin turno2
-                contadorProvisional--;
                 turnos();
             }
             
