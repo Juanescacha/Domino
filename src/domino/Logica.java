@@ -31,12 +31,25 @@ public class Logica {
         //Decidir quien inicia
         nuevoMazo.repartirFicha(humano);
         nuevoMazo.repartirFicha(humano2);
-        humano.manoJugador.size();
-        humano2.manoJugador.size();
+        //Retorna true si el jugador 1 inicia , false si inicia el 2
+        String ficha1 = Integer.toString( humano.manoJugador.get(0).getLado1()) + " - " + Integer.toString( humano.manoJugador.get(0).getLado2());
+        String ficha2 = Integer.toString( humano2.manoJugador.get(0).getLado1()) + " - " + Integer.toString( humano2.manoJugador.get(0).getLado2());
         
+        //imprimimos bonito que ficha saca jugador y cual empieza, esto pasarlo a la gui
         
-        //nuevoMazo.repartir(humano, 7); //reparte 7 dominos
-        //nuevoMazo.repartir(humano2, 7);
+        System.out.println("jugador1: " + ficha1);
+        System.out.println("jugador2: " + ficha2);
+        
+        if(humano.manoJugador.get(0).mayor(humano2.manoJugador.get(0))) System.out.println("Inicia Jugador 1");
+        else System.out.println("inicia jugador2");
+        
+        //devolvemos las 2 fichas denuevo al maso
+        nuevoMazo.agregarFicha(humano.removerFicha(0));
+        nuevoMazo.agregarFicha(humano2.removerFicha(0));
+        
+        //repartimos las 7 fichas a cada jugador
+        nuevoMazo.repartir(humano, 7); //reparte 7 dominos
+        nuevoMazo.repartir(humano2, 7);
         
     }
 }

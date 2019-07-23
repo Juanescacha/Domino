@@ -29,6 +29,10 @@ public class Mazo {
         tamanoO = mazo.size();
     }
     
+    public void agregarFicha(Ficha x) {
+        mazo.add(x);
+    }
+    
     // Retorna la lista de todos los dominos actuales en el mazo
     public ArrayList<Ficha> getFichas() {
         return mazo;

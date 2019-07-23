@@ -20,7 +20,9 @@ public class Principal {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        GUI guiObj = new GUI();
+        //GUI guiObj = new GUI();
+        Logica newLogica = new Logica();
+        newLogica.jugar();
         
     }
     
