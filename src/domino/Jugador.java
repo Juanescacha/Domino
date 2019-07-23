@@ -100,6 +100,9 @@ public class Jugador {
     public void aString() {
         
         System.out.println("numero de fichas: " + numDeFichasEnMano());
+        for (int i = 0; i < numDeFichasEnMano(); i++) {
+            System.out.println("Domino(" + i + ") : " + manoJugador.get(i).getLado1() + " | " + manoJugador.get(i).getLado2());
+        }
     }
     
 }
