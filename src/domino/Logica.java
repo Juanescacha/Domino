@@ -14,6 +14,8 @@ import java.util.ArrayList;
 public class Logica {
     
     private ArrayList<Jugador> listaJugadores;
+    boolean turnoJugador1 = true;
+    boolean gameOver = false;
     
     public Logica() {
         listaJugadores = new ArrayList<Jugador>();
@@ -39,14 +41,13 @@ public class Logica {
         
         System.out.println("jugador1: " + ficha1);
         System.out.println("jugador2: " + ficha2);
-        boolean inicia1;
         if(humano.manoJugador.get(0).mayor(humano2.manoJugador.get(0))){
             System.out.println("Inicia Jugador 1");
-            inicia1 = true;
+            turnoJugador1 = true;
         }
         else {
             System.out.println("inicia jugador2");
-            inicia1 = false;
+            turnoJugador1 = false;
         }
         
         //devolvemos las 2 fichas denuevo al maso
@@ -58,7 +59,22 @@ public class Logica {
         nuevoMazo.repartir(humano2, 7);
         
         
+        while (!gameOver) {            
+            if(turnoJugador1) {
+            
+                //fin turno1
+                turnos();
+            }
+            else if(!turnoJugador1) {
+            
+                // fin turno2
+                turnos();
+            }
+        }
         
-        
+    }
+    
+    public void turnos() {
+        turnoJugador1 = !turnoJugador1;
     }
 }
