@@ -86,8 +86,10 @@ public class Logica {
                     else if(humano.manoJugador.get(Integer.parseInt(x)).getLado2()== nuevoTablero.getLadoS()) {
                         nuevoTablero.agregarDominoS(humano.removerFicha(Integer.parseInt(x)), false);
                     }
-                    
-                    
+                }
+                
+                else {
+                    System.out.println("No puedes hacer nada PASAS");
                 }
                 //ahora el jugador elije una carta y la pone
                 
@@ -103,6 +105,22 @@ public class Logica {
                     humano2.aString();
                     String x = JOptionPane.showInputDialog("elije la posicion de una Ficha");
                     nuevoTablero.agregarDominoI(humano2.removerFicha(Integer.parseInt(x)), true);
+                    //lado 1
+                    if(humano.manoJugador.get(Integer.parseInt(x)).getLado1() == nuevoTablero.getLadoI()) {
+                        nuevoTablero.agregarDominoI(humano.removerFicha(Integer.parseInt(x)), true);
+                    }
+                    //lado 2
+                    else if(humano.manoJugador.get(Integer.parseInt(x)).getLado1() == nuevoTablero.getLadoS()) {
+                        nuevoTablero.agregarDominoS(humano.removerFicha(Integer.parseInt(x)), false);
+                    }
+                    
+                    else if(humano.manoJugador.get(Integer.parseInt(x)).getLado2() == nuevoTablero.getLadoI()) {
+                        nuevoTablero.agregarDominoI(humano.removerFicha(Integer.parseInt(x)), true);
+                    }
+                    //lado 2
+                    else if(humano.manoJugador.get(Integer.parseInt(x)).getLado2()== nuevoTablero.getLadoS()) {
+                        nuevoTablero.agregarDominoS(humano.removerFicha(Integer.parseInt(x)), false);
+                    }
                 }
                 
                 // fin turno2
