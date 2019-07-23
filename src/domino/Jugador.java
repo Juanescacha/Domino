@@ -95,6 +95,11 @@ public class Jugador {
         }
         
         return total;
-    }   
+    }
+    
+    public void aString() {
+        
+        System.out.println("numero de fichas: " + numDeFichasEnMano());
+    }
     
 }

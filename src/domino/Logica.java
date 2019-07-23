@@ -16,6 +16,7 @@ public class Logica {
     private ArrayList<Jugador> listaJugadores;
     boolean turnoJugador1 = true;
     boolean gameOver = false;
+    int contadorProvisional = 2;
     
     public Logica() {
         listaJugadores = new ArrayList<Jugador>();
@@ -39,8 +40,6 @@ public class Logica {
         
         //imprimimos bonito que ficha saca jugador y cual empieza, esto pasarlo a la gui
         
-        System.out.println("jugador1: " + ficha1);
-        System.out.println("jugador2: " + ficha2);
         if(humano.manoJugador.get(0).mayor(humano2.manoJugador.get(0))){
             System.out.println("Inicia Jugador 1");
             turnoJugador1 = true;
@@ -61,23 +60,30 @@ public class Logica {
         //agrega la primera ficha para empezar el juego
         nuevoTablero.agregarPrimeraFicha(nuevoMazo.getFicha());
              
-        while (!gameOver) {            
+        while (contadorProvisional != 0) {            
             if(turnoJugador1) {
                 
                 if(humano.tieneJuego(nuevoTablero.getLadoI()) || humano.tieneJuego(nuevoTablero.getLadoS())) {
                     System.out.println(" puedes jugar , elije una ficha ");
+                    //mostramos cartas
+                    humano.aString();
                 }
+                //ahora el jugador elije una carta y la pone
                 
                 //fin turno1
+                contadorProvisional--;
                 turnos();
             }
             else if(!turnoJugador1) {
                 
                 if(humano2.tieneJuego(nuevoTablero.getLadoI()) || humano2.tieneJuego(nuevoTablero.getLadoS())) {
                     System.out.println(" puedes jugar , elije una ficha ");
+                    //le mostramos las cartas
+                    humano2.aString();
                 }
                 
                 // fin turno2
+                contadorProvisional--;
                 turnos();
             }
             
