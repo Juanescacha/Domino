@@ -17,6 +17,8 @@ public class Logica {
     private ArrayList<Jugador> listaJugadores;
     boolean turnoJugador1 = true;
     boolean gameOver = false;
+    boolean paso1 = false;
+    boolean paso2 = false;
     
     public Logica() {
         listaJugadores = new ArrayList<Jugador>();
@@ -63,11 +65,16 @@ public class Logica {
              
         while (!gameOver) {            
             if(turnoJugador1) {
-                
+                paso1 = false;
                 if(humano.tieneJuego(nuevoTablero.getLadoI()) || humano.tieneJuego(nuevoTablero.getLadoS())) {
-                    System.out.println(" puedes jugar , elije una ficha ");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    
+                    System.out.println("Turno Jugador 1 \n");
+                    System.out.println("puedes jugar , elije una ficha, si te equivocas pierdes el turno ");
+                    System.out.println("Extremo Izquierdo " + nuevoTablero.getLadoI() + " Extremo Derecho " + nuevoTablero.getLadoS() );
                     //mostramos cartas
-                    System.out.println("humano 1");
                     humano.aString();
                     String x = JOptionPane.showInputDialog("elije la posicion de una Ficha");
                     //lado 1
@@ -76,20 +83,30 @@ public class Logica {
                     }
                     //lado 2
                     else if(humano.manoJugador.get(Integer.parseInt(x)).getLado1() == nuevoTablero.getLadoS()) {
-                        nuevoTablero.agregarDominoS(humano.removerFicha(Integer.parseInt(x)), false);
+                        nuevoTablero.agregarDominoS(humano.removerFicha(Integer.parseInt(x)), true);
                     }
                     
                     else if(humano.manoJugador.get(Integer.parseInt(x)).getLado2() == nuevoTablero.getLadoI()) {
-                        nuevoTablero.agregarDominoI(humano.removerFicha(Integer.parseInt(x)), true);
+                        nuevoTablero.agregarDominoI(humano.removerFicha(Integer.parseInt(x)), false);
                     }
                     //lado 2
                     else if(humano.manoJugador.get(Integer.parseInt(x)).getLado2()== nuevoTablero.getLadoS()) {
                         nuevoTablero.agregarDominoS(humano.removerFicha(Integer.parseInt(x)), false);
                     }
+                    if(humano.manoVacia()) {
+                        System.out.println("gano Jugador 1");
+                        gameOver = true;
+                    }
+                    
                 }
                 
                 else {
-                    System.out.println("No puedes hacer nada PASAS");
+                    System.out.println("No puedes hacer nada pasas");
+                    paso1 = true;
+                    if(paso2 == true) {
+                        System.out.println("Empate");
+                        gameOver = true;
+                    }
                 }
                 //ahora el jugador elije una carta y la pone
                 
@@ -97,29 +114,47 @@ public class Logica {
                 turnos();
             }
             else if(!turnoJugador1) {
-                
+                paso2 = false;
                 if(humano2.tieneJuego(nuevoTablero.getLadoI()) || humano2.tieneJuego(nuevoTablero.getLadoS())) {
-                    System.out.println(" puedes jugar , elije una ficha ");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    
+                    System.out.println("Turno Jugador 2 \n");
+                    System.out.println("puedes jugar , elije una ficha, si te equivocas pierdes el turno ");
+                    System.out.println("Extremo Izquierdo " + nuevoTablero.getLadoI() + " Extremo Derecho " + nuevoTablero.getLadoS() );
                     //le mostramos las cartas
-                    System.out.println("humano 2");
                     humano2.aString();
                     String x = JOptionPane.showInputDialog("elije la posicion de una Ficha");
-                    nuevoTablero.agregarDominoI(humano2.removerFicha(Integer.parseInt(x)), true);
                     //lado 1
-                    if(humano.manoJugador.get(Integer.parseInt(x)).getLado1() == nuevoTablero.getLadoI()) {
-                        nuevoTablero.agregarDominoI(humano.removerFicha(Integer.parseInt(x)), true);
+                    if(humano2.manoJugador.get(Integer.parseInt(x)).getLado1() == nuevoTablero.getLadoI()) {
+                        nuevoTablero.agregarDominoI(humano2.removerFicha(Integer.parseInt(x)), true);
                     }
                     //lado 2
-                    else if(humano.manoJugador.get(Integer.parseInt(x)).getLado1() == nuevoTablero.getLadoS()) {
-                        nuevoTablero.agregarDominoS(humano.removerFicha(Integer.parseInt(x)), false);
+                    else if(humano2.manoJugador.get(Integer.parseInt(x)).getLado1() == nuevoTablero.getLadoS()) {
+                        nuevoTablero.agregarDominoS(humano2.removerFicha(Integer.parseInt(x)), true);
                     }
                     
-                    else if(humano.manoJugador.get(Integer.parseInt(x)).getLado2() == nuevoTablero.getLadoI()) {
-                        nuevoTablero.agregarDominoI(humano.removerFicha(Integer.parseInt(x)), true);
+                    else if(humano2.manoJugador.get(Integer.parseInt(x)).getLado2() == nuevoTablero.getLadoI()) {
+                        nuevoTablero.agregarDominoI(humano2.removerFicha(Integer.parseInt(x)), false);
                     }
                     //lado 2
-                    else if(humano.manoJugador.get(Integer.parseInt(x)).getLado2()== nuevoTablero.getLadoS()) {
-                        nuevoTablero.agregarDominoS(humano.removerFicha(Integer.parseInt(x)), false);
+                    else if(humano2.manoJugador.get(Integer.parseInt(x)).getLado2()== nuevoTablero.getLadoS()) {
+                        nuevoTablero.agregarDominoS(humano2.removerFicha(Integer.parseInt(x)), false);
+                    }
+                    if(humano2.manoVacia()) {
+                        System.out.println("gano Jugador 2");
+                        gameOver = true;
+                    }
+                    
+                }
+                
+                else {
+                    System.out.println("No puedes hacer nada, pasas!");
+                    paso2 = true;
+                    if(paso1 = true) {
+                        System.out.println("Empate");
+                        gameOver = true;
                     }
                 }
                 
@@ -128,11 +163,11 @@ public class Logica {
             }
             
             if(humano.manoVacia()) {
-                System.out.println("gano 1");
+                System.out.println("gano Jugador 1");
                 gameOver = true;
             }
             if(humano2.manoVacia()) {
-                System.out.println("gano 2");
+                System.out.println("gano Jugador 2");
                 gameOver = true;
             }
         }
