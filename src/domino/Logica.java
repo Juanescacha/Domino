@@ -39,9 +39,15 @@ public class Logica {
         
         System.out.println("jugador1: " + ficha1);
         System.out.println("jugador2: " + ficha2);
-        
-        if(humano.manoJugador.get(0).mayor(humano2.manoJugador.get(0))) System.out.println("Inicia Jugador 1");
-        else System.out.println("inicia jugador2");
+        boolean inicia1;
+        if(humano.manoJugador.get(0).mayor(humano2.manoJugador.get(0))){
+            System.out.println("Inicia Jugador 1");
+            inicia1 = true;
+        }
+        else {
+            System.out.println("inicia jugador2");
+            inicia1 = false;
+        }
         
         //devolvemos las 2 fichas denuevo al maso
         nuevoMazo.agregarFicha(humano.removerFicha(0));
@@ -50,6 +56,9 @@ public class Logica {
         //repartimos las 7 fichas a cada jugador
         nuevoMazo.repartir(humano, 7); //reparte 7 dominos
         nuevoMazo.repartir(humano2, 7);
+        
+        
+        
         
     }
 }
