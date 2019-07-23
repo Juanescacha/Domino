@@ -58,7 +58,9 @@ public class Logica {
         nuevoMazo.repartir(humano, 7); //reparte 7 dominos
         nuevoMazo.repartir(humano2, 7);
         
-        
+        //agrega la primera ficha para empezar el juego
+        nuevoTablero.agregarPrimeraFicha(nuevoMazo.getFicha());
+             
         while (!gameOver) {            
             if(turnoJugador1) {
             
@@ -69,6 +71,15 @@ public class Logica {
             
                 // fin turno2
                 turnos();
+            }
+            
+            if(humano.manoVacia()) {
+                System.out.println("gano 1");
+                gameOver = true;
+            }
+            if(humano2.manoVacia()) {
+                System.out.println("gano 2");
+                gameOver = true;
             }
         }
         

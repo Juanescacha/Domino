@@ -26,6 +26,12 @@ public class Tablero {
         return dominos;
     }
     
+    public void agregarPrimeraFicha(Ficha ficha) {
+        dominos.add(ficha);
+        ladoS = ficha.getLado1();
+        ladoI = ficha.getLado2();
+    }
+    
     public int getLadoS() {
         if(!estaVacio()) return ladoS;
         else return -1;

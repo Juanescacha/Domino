@@ -29,6 +29,10 @@ public class Mazo {
         tamanoO = mazo.size();
     }
     
+    public Ficha getFicha() {
+        return mazo.remove(0);
+    }
+    
     public void agregarFicha(Ficha x) {
         mazo.add(x);
     }
