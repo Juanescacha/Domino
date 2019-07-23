@@ -63,12 +63,20 @@ public class Logica {
              
         while (!gameOver) {            
             if(turnoJugador1) {
-            
+                
+                if(humano.tieneJuego(nuevoTablero.getLadoI()) || humano.tieneJuego(nuevoTablero.getLadoS())) {
+                    System.out.println(" puedes jugar , elije una ficha ");
+                }
+                
                 //fin turno1
                 turnos();
             }
             else if(!turnoJugador1) {
-            
+                
+                if(humano2.tieneJuego(nuevoTablero.getLadoI()) || humano2.tieneJuego(nuevoTablero.getLadoS())) {
+                    System.out.println(" puedes jugar , elije una ficha ");
+                }
+                
                 // fin turno2
                 turnos();
             }
